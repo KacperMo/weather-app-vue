@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Pogodynka </title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Description" content="pogodynka uek">
+
+    <script src="./index_files/js" async=""></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        window.gtag = function() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-161446294-1');
+
+    </script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        html {
+            font-size: 16px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #353539;
+            background-color: #FFFFFF;
+        }
+
+        .pre-app {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pre-app__body {
+            width: auto;
+            text-align: center;
+        }
+
+        .pre-app__logo {
+            display: block;
+        }
+
+        .pre-app__title-block {
+            margin-top: 2rem;
+        }
+
+        .pre-app__title {
+            font-weight: bold;
+        }
+
+    </style>
+
+
+    <link href="./index_files/app-7d0f37602d49481903a5.css" rel="stylesheet">
+    <style type="text/css"></style>
+    <link rel="stylesheet" type="text/css" href="./index_files/forecast-58c76ea2846feacb761d.css">
+
+</head>
+
+<body data-v-app="">
+    <div name="layout" class="layout app transition-theme-change phase--day theme--default">
+
+        <div class="layout__body">
+            <div class="weather-layout route forecast-master">
+                <div class="route forecast-index transition-theme-change theme--weather-clear" layout="column top-stretch">
+                    <div class="container forecast-index__header">
+                        <div class="weather-actions" layout="row center-justify">
+                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right"><svg class="icon icon--map-pin-line icon-button__icon">
+                                    <use xlink:href="/icons.svg#map-pin-line"></use>
+                                </svg>
+                                <div class="icon-button__label" self="size-x1">
+                                    <div>Kraków</div>
+                                </div>
+                            </div>
+                            <div self="size-x1"></div>
+                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--update weather-actions__action weather-actions__action--update" layout="row center-left" data-tooltip="Update" data-tooltip-position="left"><svg class="icon icon--refresh-line icon-button__icon">
+                                    <use xlink:href="/icons.svg#refresh-line"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <header class="forecast-index__summary" layout="column center-stretch">
+                            <div class="forecast-summary">
+                                <div layout="row center-justify">
+                                    <div>
+                                        <div class="forecast-summary__temp"> 22°C / 1°C </div>
+                                        <div class="forecast-summary__temp"><small>deszcz 0%</small></div>
+                                        <div class="forecast-summary__description"><small>Bezchmurnie</small></div>
+                                    </div>
+                                    <div><img class="forecast-summary__figure" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgd2lkdGg9Ijk2cHgiIGhlaWdodD0iOTZweCI+PHJhZGlhbEdyYWRpZW50IGlkPSJ3fklOdWpmcFFhbk1oX19fRDdBdTJhIiBjeD0iMjQiIGN5PSIyNCIgcj0iMjIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9Ii43MjQiIHN0b3AtY29sb3I9IiNmZmVkNTQiLz48c3RvcCBvZmZzZXQ9Ii43NzkiIHN0b3AtY29sb3I9IiNmZmU2NDkiLz48c3RvcCBvZmZzZXQ9Ii44NzciIHN0b3AtY29sb3I9IiNmZmQyMmQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmIzMDAiLz48L3JhZGlhbEdyYWRpZW50PjxwYXRoIGZpbGw9InVybCgjd35JTnVqZnBRYW5NaF9fX0Q3QXUyYSkiIGQ9Ik0yNCwybDEuNDIxLDEuNDc0YzAuOTMsMC45NjUsMi4zODgsMS4xOTYsMy41NzEsMC41NjZsMS44MDctMC45NjNsMC44OTYsMS44NDEJYzAuNTg2LDEuMjA1LDEuOTAyLDEuODc2LDMuMjIyLDEuNjQxbDIuMDE2LTAuMzU3bDAuMjgzLDIuMDI4YzAuMTg1LDEuMzI4LDEuMjI5LDIuMzcxLDIuNTU3LDIuNTU3bDIuMDI4LDAuMjgzbC0wLjM1NywyLjAxNgljLTAuMjM0LDEuMzIsMC40MzYsMi42MzUsMS42NDEsMy4yMjJsMS44NDEsMC44OTZsLTAuOTYzLDEuODA3Yy0wLjYzMSwxLjE4My0wLjQsMi42NDEsMC41NjYsMy41NzFMNDYsMjRsLTEuNDc0LDEuNDIxCWMtMC45NjUsMC45My0xLjE5NiwyLjM4OC0wLjU2NiwzLjU3MWwwLjk2MywxLjgwN2wtMS44NDEsMC44OTZjLTEuMjA1LDAuNTg2LTEuODc2LDEuOTAyLTEuNjQxLDMuMjIybDAuMzU3LDIuMDE2bC0yLjAyOCwwLjI4MwljLTEuMzI4LDAuMTg1LTIuMzcxLDEuMjI5LTIuNTU3LDIuNTU3bC0wLjI4MywyLjAyOGwtMi4wMTYtMC4zNTdjLTEuMzItMC4yMzQtMi42MzUsMC40MzYtMy4yMjIsMS42NDFsLTAuODk2LDEuODQxbC0xLjgwNy0wLjk2MwljLTEuMTgzLTAuNjMxLTIuNjQxLTAuNC0zLjU3MSwwLjU2NkwyNCw0NmwtMS40MjEtMS40NzRjLTAuOTMtMC45NjUtMi4zODgtMS4xOTYtMy41NzEtMC41NjZsLTEuODA3LDAuOTYzbC0wLjg5Ni0xLjg0MQljLTAuNTg2LTEuMjA1LTEuOTAyLTEuODc2LTMuMjIyLTEuNjQxbC0yLjAxNiwwLjM1N2wtMC4yODMtMi4wMjhjLTAuMTg1LTEuMzI4LTEuMjI5LTIuMzcxLTIuNTU3LTIuNTU3bC0yLjAyOC0wLjI4M2wwLjM1Ny0yLjAxNgljMC4yMzQtMS4zMi0wLjQzNi0yLjYzNS0xLjY0MS0zLjIyMmwtMS44NDEtMC44OTZsMC45NjMtMS44MDdjMC42MzEtMS4xODMsMC40LTIuNjQxLTAuNTY2LTMuNTcxTDIsMjRsMS40NzQtMS40MjEJYzAuOTY1LTAuOTMsMS4xOTYtMi4zODgsMC41NjYtMy41NzFsLTAuOTYzLTEuODA3bDEuODQxLTAuODk2YzEuMjA1LTAuNTg2LDEuODc2LTEuOTAyLDEuNjQxLTMuMjIybC0wLjM1Ny0yLjAxNmwyLjAyOC0wLjI4MwljMS4zMjgtMC4xODUsMi4zNzEtMS4yMjksMi41NTctMi41NTdsMC4yODMtMi4wMjhsMi4wMTYsMC4zNTdjMS4zMiwwLjIzNCwyLjYzNS0wLjQzNiwzLjIyMi0xLjY0MWwwLjg5Ni0xLjg0MWwxLjgwNywwLjk2MwljMS4xODMsMC42MzEsMi42NDEsMC40LDMuNTcxLTAuNTY2TDI0LDJ6Ii8+PGxpbmVhckdyYWRpZW50IGlkPSJ3fklOdWpmcFFhbk1oX19fRDdBdTJiIiB4MT0iOC4wOTIiIHgyPSIzNS45OTYiIHkxPSI4LjA5MiIgeTI9IjM1Ljk5NiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZlZDEwMCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UzNjAwMSIvPjwvbGluZWFyR3JhZGllbnQ+PHBhdGggZmlsbD0idXJsKCN3fklOdWpmcFFhbk1oX19fRDdBdTJiKSIgZD0iTTI0LDdDMTQuNjExLDcsNywxNC42MTEsNywyNHM3LjYxMSwxNywxNywxN3MxNy03LjYxMSwxNy0xN1MzMy4zODksNywyNCw3eiIvPjwvc3ZnPg==" alt="clear sky"></div>
+                                </div>
+                                <div class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                            </div>
+                        </header>
+                        
+                        
+                        
+                    </div>
+                    <div class="forecast-index__body" self="size-x1">
+                        <div class="container forecast-index__container">
+                            <section class="block forecast-index__block forecast-index__block--today">
+                                <div class="block__header" layout="row center-justify">
+                                    <div class="block__title">Dzisiaj</div>
+                                    
+                                </div>
+                                <div class="block__body">
+                                    <div class="transition-box-resize forecast-today" grid="3">
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Temp</small></div>
+                                            <div>17 / 24</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Humidity</small></div>
+                                            <div>68%</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Precipitation</small></div>
+                                            <div>33% chance</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Sunrise</small></div>
+                                            <div>6:16 am</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Sunset</small></div>
+                                            <div>5:59 pm</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Wind</small></div>
+                                            <div>3.6m/s E</div>
+                                        </div>
+                                    </div>
+                                    <div class="margin__top--small text--centre">
+                                        <div class="icon-button icon-button--horizontal" layout="row center-left" data-tooltip="Show more detail" data-tooltip-position="top"><svg class="icon icon--arrow-down-s-line icon-button__icon">
+                                                <use xlink:href="/icons.svg#arrow-down-s-line"></use>
+                                            </svg>
+                                            <!--v-if-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="block forecast-index__block forecast-index__block--daily-forecast">
+                                <div class="block__header" layout="row center-justify">
+                                    <div class="block__title">7 dniowa</div>
+                                    <!--v-if-->
+                                </div>
+                                <div class="block__body">
+                                    <div class="accordion forecast-daily">
+                                        <table class="forecast-daily__days">
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Clear sky</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">2%</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">25</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Friday, 9 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Clear sky</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <!--v-if-->
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">16</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">27</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Saturday, 10 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Clear sky</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <!--v-if-->
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">17</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">28</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Sunday, 11 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Clear sky</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <!--v-if-->
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">17</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">29</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--showers-line">
+                                                            <use xlink:href="/icons.svg#showers-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Monday, 12 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Light rain</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">54%</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.77;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">20</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">23</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--showers-line">
+                                                            <use xlink:href="/icons.svg#showers-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Tuesday, 13 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Light rain</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">71%</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.855;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">18</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">21</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon"><svg class="icon icon--showers-line">
+                                                            <use xlink:href="/icons.svg#showers-line"></use>
+                                                        </svg></td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Wednesday, 14 Apr</div>
+                                                        <div class="text--meta text--tight"><small>Light rain</small></div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">86%</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.93;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">18</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">23</td>
+                                                </tr>
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="block forecast-index__block forecast-index__block--hourly-forecast">
+                                <div class="block__header" layout="row center-justify">
+                                    <div class="block__title">Godzinowa</div>
+                                    
+                                </div>
+                                <div class="block__body">
+                                    <div class="forecast-hourly">
+                                        <div class="forecast-hourly__header" layout="row center-justify">
+                                            <div self="size-x1">Temperature (°C)</div>
+                                            <div class="forecast-hourly__options" layout="row center-center">
+                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item--active menu-item text--small menu-item--active" layout="row center-left" data-tooltip="Temperature" data-tooltip-position="top"><svg class="icon icon--temp-cold-line icon-button__icon">
+                                                        <use xlink:href="/icons.svg#temp-cold-line"></use>
+                                                    </svg>
+                                                    <!--v-if-->
+                                                </div>
+                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item text--small" layout="row center-left" data-tooltip="Precipitation" data-tooltip-position="top"><svg class="icon icon--rainy-line icon-button__icon">
+                                                        <use xlink:href="/icons.svg#rainy-line"></use>
+                                                    </svg>
+                                                    <!--v-if-->
+                                                </div>
+                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item text--small" layout="row center-left" data-tooltip="Wind" data-tooltip-position="top"><svg class="icon icon--windy-line icon-button__icon">
+                                                        <use xlink:href="/icons.svg#windy-line"></use>
+                                                    </svg>
+                                                    <!--v-if-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="trends-chart">
+                                            <div class="trends-chart__body" style="grid-template-rows: repeat(4, auto); grid-template-columns: 2rem repeat(46, 4rem) 2rem;">
+                                                <div class="line-chart trends-chart__chart"><svg id="chart-hGd4qO" width="100%" height="100%" style="display: block;" class="spline-chart__svg" viewBox="0 0 3008 196">
+                                                        <g class="spline-chart__canvas" transform="translate(0, 32)">
+                                                            <g>
+                                                                <g transform="translate(0, 196)"></g>
+                                                                <g></g>
+                                                            </g>
+                                                            <g class="spline-chart__line-group">
+                                                                <path class="spline-chart__area" fill="#47B1FA" fill-opacity="0.5" d="M0,25.692307692307697C0,25.692307692307697,42.70884415091811,25.635646017837875,64,24.461538461538453C85.37584702904657,23.28276058320235,106.64182688499947,20.23702088978328,128,18.61538461538461C149.30860870576225,16.997511558163136,170.6524797734543,15.045049774570204,191.99999999999997,14.738461538461543C213.3191840777584,14.432280259684815,234.70828414529095,15.430868323044576,256,16.769230769230752C277.37527812001235,18.11284580278769,298.6371594123264,21.17832242764072,320,22.8C341.30398843319546,24.417210038249745,362.6989117849746,24.84479466915167,383.99999999999994,26.492307692307698C405.36577459062585,28.144823823527833,426.733350461361,30.093731871658296,448,32.7076923076923C469.40086145476647,35.33814921338242,490.5810728458596,39.821995602789706,512,42.24615384615384C533.2490915174886,44.65109037707442,554.6426409209885,45.97900100704884,576,47.23076923076925C597.3094153342469,48.479727441510036,618.6634300859891,49.00504261821866,640,49.75384615384617C661.3300987156124,50.50242258379269,682.667656669666,51.03593218132756,704,51.72307692307691C725.3343235201366,52.41028544952117,746.6663267932325,53.16921982137936,767.9999999999999,53.87692307692307C789.3329934815565,54.58460378390049,810.6631424626585,55.40507906231782,832,55.96923076923077C853.32981145654,56.53319617605224,874.6668786033862,56.82051740568427,896,57.261538461538464C917.3335452784754,57.702568280330944,938.6671200741221,58.143600642825966,960,58.61538461538461C981.3337867793382,59.08718864331927,1002.6682629715075,59.53851219113133,1024,60.09230769230769C1045.3349301161027,60.64618608957221,1066.671766020096,61.179737260354365,1088,61.93846153846153C1109.3384375670676,62.697548795956116,1130.6597321891616,63.95889096641827,1152,64.64615384615384C1173.3264078604298,65.33297036647558,1194.6666666666667,65.58974358974358,1216,66.06153846153845C1237.3333333333333,66.53333333333332,1258.6668982987364,67.4871689077165,1280,67.47692307692309C1301.3335649754636,67.46667702362902,1322.721805188828,67.35605862712563,1344,66C1365.3890478625333,64.63687671170484,1386.7615336311064,62.216485192381086,1408,59.292307692307695C1429.4299183436253,56.34177049435738,1450.678811936398,52.05933708478072,1472,48.33846153846154C1493.3455063238705,44.61334208135783,1514.628245015014,40.5183820912668,1535.9999999999998,36.95384615384616C1557.295186494668,33.40208086327244,1578.6331287688663,30.075907649629343,1600,26.984615384615374C1621.3000050163644,23.902997114931342,1642.6117479360305,20.782952613510584,1664,18.43076923076924C1685.27897435501,16.090603717012712,1706.6428182160416,14.400929556821934,1728.0000000000002,12.892307692307686C1749.3095910484733,11.387047527142496,1770.6506459656155,9.96879239831767,1792,9.384615384615376C1813.3173606124687,8.801313798883532,1834.6820854640246,8.811502376026125,1856,9.384615384615376C1877.3487968360798,9.958558636139292,1898.774871917696,10.637497573627854,1920,12.830769230769235C1941.4437794270734,15.04663494696264,1962.7783590508125,18.786181099206637,1983.9999999999998,22.67692307692308C2005.4474149176472,26.609058095765064,2026.4564706143399,33.23893192714624,2048,36.33846153846152C2069.131108078638,39.37865490869155,2090.651742676472,39.84547917620767,2112,41.26153846153845C2133.318450987655,42.67562065159464,2154.6572118356603,43.84589921253495,2176,44.83076923076923C2197.323895234012,45.81476742848535,2218.6636956040984,46.4819812870942,2240,47.16923076923076C2261.3303639249457,47.85628890681615,2282.6685580156686,48.29750500538632,2304,48.95384615384615C2325.3352253532994,49.61030371172338,2346.6689116981715,50.32830011167069,2368,51.10769230769231C2389.3355793102664,51.88724859552578,2410.6722143885995,52.6669814098587,2432,53.63076923076924C2453.338886832004,54.595058708129685,2474.6599448720967,55.95877719890386,2496,56.89230769230771C2517.3266199998234,57.825250459875335,2538.663986451158,58.53326632535638,2560,59.23076923076924C2581.3306544640654,59.92809694051149,2602.666095088866,60.48203644298279,2624,61.07692307692308C2645.3327618167823,61.67177783617593,2666.6666666666665,62.22564102564103,2688,62.800000000000004C2709.333333333333,63.37435897435898,2730.665641571552,63.9897219048498,2752,64.52307692307691C2773.3323084352096,65.05638069185188,2794.667972357534,66.05121236851345,2816,66C2837.3346393439333,65.94878136150507,2858.8111174063347,66.28315329998833,2880,64.21538461538461C2901.481805560584,62.119030330038846,2922.771854162806,57.53280135617033,2944,53.3846153846154C2965.4406371991417,49.19490653614621,3008,39.16923076923077,3008,39.16923076923077L3008,162C3008,162,2965.3333333333335,162,2944,162C2922.6666666666665,162,2901.3333333333335,162,2880,162C2858.6666666666665,162,2837.3333333333335,162,2816,162C2794.6666666666665,162,2773.3333333333335,162,2752,162C2730.6666666666665,162,2709.3333333333335,162,2688,162C2666.6666666666665,162,2645.3333333333335,162,2624,162C2602.6666666666665,162,2581.3333333333335,162,2560,162C2538.6666666666665,162,2517.3333333333335,162,2496,162C2474.6666666666665,162,2453.3333333333335,162,2432,162C2410.6666666666665,162,2389.3333333333335,162,2368,162C2346.6666666666665,162,2325.3333333333335,162,2304,162C2282.6666666666665,162,2261.3333333333335,162,2240,162C2218.6666666666665,162,2197.3333333333335,162,2176,162C2154.6666666666665,162,2133.3333333333335,162,2112,162C2090.6666666666665,162,2069.333333333333,161.99999999999997,2048,162C2026.6666666666667,162,2005.3333333333333,162,1983.9999999999998,162C1962.6666666666663,162,1941.333333333333,162.00000000000003,1920,162C1898.6666666666667,162,1877.3333333333333,162,1856,162C1834.6666666666667,162,1813.3333333333337,162.00000000000003,1792,162C1770.6666666666665,162,1749.3333333333337,162,1728.0000000000002,162C1706.6666666666667,162,1685.3333333333333,161.99999999999997,1664,162C1642.6666666666667,162,1621.3333333333333,161.99999999999997,1600,162C1578.6666666666665,162,1557.333333333333,162,1535.9999999999998,162C1514.6666666666665,162,1493.3333333333335,162.00000000000003,1472,162C1450.6666666666665,162,1429.3333333333333,162,1408,162C1386.6666666666667,162,1365.3333333333333,162,1344,162C1322.6666666666667,162,1301.3333333333333,162,1280,162C1258.6666666666667,162,1237.3333333333333,162,1216,162C1194.6666666666667,162,1173.3333333333333,162,1152,162C1130.6666666666667,162,1109.3333333333333,162,1088,162C1066.6666666666667,162,1045.3333333333333,162,1024,162C1002.6666666666666,162,981.3333333333334,162,960,162C938.6666666666666,162,917.3333333333334,162,896,162C874.6666666666666,162,853.3333333333331,162.00000000000003,832,162C810.6666666666665,162,789.3333333333333,162,767.9999999999999,162C746.6666666666665,162,725.3333333333334,162,704,162C682.6666666666666,162,661.3333333333334,162,640,162C618.6666666666666,162,597.3333333333334,162,576,162C554.6666666666666,162,533.3333333333334,162,512,162C490.6666666666667,162,469.3333333333333,162,448,162C426.66666666666663,162,405.3333333333333,162,383.99999999999994,162C362.66666666666663,162,341.3333333333333,162,320,162C298.66666666666663,162,277.3333333333333,162,256,162C234.66666666666669,162,213.33333333333334,162.00000000000003,191.99999999999997,162C170.66666666666666,161.99999999999997,149.33333333333334,162,128,162C106.66666666666666,161.99999999999997,85.33333333333333,162,64,162C42.666666666666664,162,0,162,0,162Z"></path>
+                                                                <path class="spline-chart__line" stroke-width="2" stroke="#47B1FA" fill="none" d="M0,25.692307692307697C0,25.692307692307697,42.70884415091811,25.635646017837875,64,24.461538461538453C85.37584702904657,23.28276058320235,106.64182688499947,20.23702088978328,128,18.61538461538461C149.30860870576225,16.997511558163136,170.6524797734543,15.045049774570204,191.99999999999997,14.738461538461543C213.3191840777584,14.432280259684815,234.70828414529095,15.430868323044576,256,16.769230769230752C277.37527812001235,18.11284580278769,298.6371594123264,21.17832242764072,320,22.8C341.30398843319546,24.417210038249745,362.6989117849746,24.84479466915167,383.99999999999994,26.492307692307698C405.36577459062585,28.144823823527833,426.733350461361,30.093731871658296,448,32.7076923076923C469.40086145476647,35.33814921338242,490.5810728458596,39.821995602789706,512,42.24615384615384C533.2490915174886,44.65109037707442,554.6426409209885,45.97900100704884,576,47.23076923076925C597.3094153342469,48.479727441510036,618.6634300859891,49.00504261821866,640,49.75384615384617C661.3300987156124,50.50242258379269,682.667656669666,51.03593218132756,704,51.72307692307691C725.3343235201366,52.41028544952117,746.6663267932325,53.16921982137936,767.9999999999999,53.87692307692307C789.3329934815565,54.58460378390049,810.6631424626585,55.40507906231782,832,55.96923076923077C853.32981145654,56.53319617605224,874.6668786033862,56.82051740568427,896,57.261538461538464C917.3335452784754,57.702568280330944,938.6671200741221,58.143600642825966,960,58.61538461538461C981.3337867793382,59.08718864331927,1002.6682629715075,59.53851219113133,1024,60.09230769230769C1045.3349301161027,60.64618608957221,1066.671766020096,61.179737260354365,1088,61.93846153846153C1109.3384375670676,62.697548795956116,1130.6597321891616,63.95889096641827,1152,64.64615384615384C1173.3264078604298,65.33297036647558,1194.6666666666667,65.58974358974358,1216,66.06153846153845C1237.3333333333333,66.53333333333332,1258.6668982987364,67.4871689077165,1280,67.47692307692309C1301.3335649754636,67.46667702362902,1322.721805188828,67.35605862712563,1344,66C1365.3890478625333,64.63687671170484,1386.7615336311064,62.216485192381086,1408,59.292307692307695C1429.4299183436253,56.34177049435738,1450.678811936398,52.05933708478072,1472,48.33846153846154C1493.3455063238705,44.61334208135783,1514.628245015014,40.5183820912668,1535.9999999999998,36.95384615384616C1557.295186494668,33.40208086327244,1578.6331287688663,30.075907649629343,1600,26.984615384615374C1621.3000050163644,23.902997114931342,1642.6117479360305,20.782952613510584,1664,18.43076923076924C1685.27897435501,16.090603717012712,1706.6428182160416,14.400929556821934,1728.0000000000002,12.892307692307686C1749.3095910484733,11.387047527142496,1770.6506459656155,9.96879239831767,1792,9.384615384615376C1813.3173606124687,8.801313798883532,1834.6820854640246,8.811502376026125,1856,9.384615384615376C1877.3487968360798,9.958558636139292,1898.774871917696,10.637497573627854,1920,12.830769230769235C1941.4437794270734,15.04663494696264,1962.7783590508125,18.786181099206637,1983.9999999999998,22.67692307692308C2005.4474149176472,26.609058095765064,2026.4564706143399,33.23893192714624,2048,36.33846153846152C2069.131108078638,39.37865490869155,2090.651742676472,39.84547917620767,2112,41.26153846153845C2133.318450987655,42.67562065159464,2154.6572118356603,43.84589921253495,2176,44.83076923076923C2197.323895234012,45.81476742848535,2218.6636956040984,46.4819812870942,2240,47.16923076923076C2261.3303639249457,47.85628890681615,2282.6685580156686,48.29750500538632,2304,48.95384615384615C2325.3352253532994,49.61030371172338,2346.6689116981715,50.32830011167069,2368,51.10769230769231C2389.3355793102664,51.88724859552578,2410.6722143885995,52.6669814098587,2432,53.63076923076924C2453.338886832004,54.595058708129685,2474.6599448720967,55.95877719890386,2496,56.89230769230771C2517.3266199998234,57.825250459875335,2538.663986451158,58.53326632535638,2560,59.23076923076924C2581.3306544640654,59.92809694051149,2602.666095088866,60.48203644298279,2624,61.07692307692308C2645.3327618167823,61.67177783617593,2666.6666666666665,62.22564102564103,2688,62.800000000000004C2709.333333333333,63.37435897435898,2730.665641571552,63.9897219048498,2752,64.52307692307691C2773.3323084352096,65.05638069185188,2794.667972357534,66.05121236851345,2816,66C2837.3346393439333,65.94878136150507,2858.8111174063347,66.28315329998833,2880,64.21538461538461C2901.481805560584,62.119030330038846,2922.771854162806,57.53280135617033,2944,53.3846153846154C2965.4406371991417,49.19490653614621,3008,39.16923076923077,3008,39.16923076923077"></path>
+                                                            </g>
+                                                            <g class="spline-chart__marker-group">
+                                                                <g transform="translate(0, 25.692307692307697)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);"></text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(64, 24.461538461538453)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">22</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(128, 18.61538461538461)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">23</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(191.99999999999997, 14.738461538461543)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">24</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(256, 16.769230769230752)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">24</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(320, 22.8)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">23</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(383.99999999999994, 26.492307692307698)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">22</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(448, 32.7076923076923)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">21</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(512, 42.24615384615384)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">19</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(576, 47.23076923076925)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">19</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(640, 49.75384615384617)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(704, 51.72307692307691)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(767.9999999999999, 53.87692307692307)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(832, 55.96923076923077)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(896, 57.261538461538464)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(960, 58.61538461538461)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1024, 60.09230769230769)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1088, 61.93846153846153)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1152, 64.64615384615384)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1216, 66.06153846153845)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1280, 67.47692307692309)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">15</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1344, 66)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1408, 59.292307692307695)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1472, 48.33846153846154)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1535.9999999999998, 36.95384615384616)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">20</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1600, 26.984615384615374)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">22</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1664, 18.43076923076924)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">23</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1728.0000000000002, 12.892307692307686)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">24</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1792, 9.384615384615376)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">25</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1856, 9.384615384615376)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">25</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1920, 12.830769230769235)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">24</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(1983.9999999999998, 22.67692307692308)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">23</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2048, 36.33846153846152)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">20</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2112, 41.26153846153845)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">20</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2176, 44.83076923076923)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">19</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2240, 47.16923076923076)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">19</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2304, 48.95384615384615)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2368, 51.10769230769231)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2432, 53.63076923076924)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2496, 56.89230769230771)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2560, 59.23076923076924)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">17</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2624, 61.07692307692308)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2688, 62.800000000000004)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2752, 64.52307692307691)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2816, 66)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2880, 64.21538461538461)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">16</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(2944, 53.3846153846154)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">18</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                                <g transform="translate(3008, 39.16923076923077)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">20</text>
+                                                                    <circle r="3" fill="#47B1FA"></circle>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </svg></div>
+                                                <div class="trends-chart__now" layout="column center-left"><span class="trends-chart__now-label">Now</span></div>
+                                                <div class="trends-chart__column"><small>11 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>12 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>1 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>2 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>3 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>4 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Broken clouds</small></div>
+                                                <div class="trends-chart__column"><small>5 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>6 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>7 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>8 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>9 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>10 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>11 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>12 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>1 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>2 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>3 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>4 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>5 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>6 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>7 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>8 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>9 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Scattered clouds</small></div>
+                                                <div class="trends-chart__column"><small>10 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>11 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>12 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>1 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>2 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>3 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>4 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>5 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--sun-line">
+                                                        <use xlink:href="/icons.svg#sun-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>6 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>7 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>8 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>9 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>10 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>11 pm</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>12 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>1 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>2 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>3 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-clear-line">
+                                                        <use xlink:href="/icons.svg#moon-clear-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Clear sky</small></div>
+                                                <div class="trends-chart__column"><small>4 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>5 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>6 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--moon-cloudy-line">
+                                                        <use xlink:href="/icons.svg#moon-cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>7 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__column"><small>8 am</small></div>
+                                                <div class="trends-chart__column"><svg class="icon icon--cloudy-line">
+                                                        <use xlink:href="/icons.svg#cloudy-line"></use>
+                                                    </svg></div>
+                                                <div class="trends-chart__column"><small class="text--x-small">Few clouds</small></div>
+                                                <div class="trends-chart__later" layout="column center-right"><span class="trends-chart__later-label">Later</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                            <section class="block forecast-index__block forecast-index__block--moonphases">
+                                <div class="block__header" layout="row center-justify">
+                                    <div class="block__title">Fazy księżyca</div>
+                                    
+                                </div>
+                                <div class="block__body">
+                                    <div class="forecast-hourly">
+                                        <div class="forecast-hourly__header" layout="row center-justify">
+                                            <div self="size-x1">Fazy</div>
+                                            <div class="forecast-hourly__options" layout="row center-center">
+                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item--active menu-item text--small menu-item--active" layout="row center-left" data-tooltip="Temperature" data-tooltip-position="top"><svg class="icon icon--temp-cold-line icon-button__icon">
+                                                        <use xlink:href="/icons.svg#temp-cold-line"></use>
+                                                    </svg>
+                                                    <!--v-if-->
+                                                </div>
+                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item text--small" layout="row center-left" data-tooltip="Precipitation" data-tooltip-position="top"><svg class="icon icon--rainy-line icon-button__icon">
+                                                        <use xlink:href="/icons.svg#rainy-line"></use>
+                                                    </svg>
+                                                    <!--v-if-->
+                                                </div>
+                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item text--small" layout="row center-left" data-tooltip="Wind" data-tooltip-position="top"><svg class="icon icon--windy-line icon-button__icon">
+                                                        <use xlink:href="/icons.svg#windy-line"></use>
+                                                    </svg>
+                                                    <!--v-if-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="trends-chart">
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--v-if-->
+            <!--v-if-->
+        </div>
+        <!--v-if-->
+        
+    </div>
+</body>
+
+</html>
