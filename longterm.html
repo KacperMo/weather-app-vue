@@ -119,47 +119,318 @@
                     </div>
                     <div class="forecast-index__body" self="size-x1">
                         <div class="container forecast-index__container">
-                            <section class="block forecast-index__block forecast-index__block--today">
+                            
+                            <section class="block forecast-index__block forecast-index__block--daily-forecast">
                                 <div class="block__header" layout="row center-justify">
-                                    <div class="block__title">Dzisiaj</div>
-
+                                    <div class="block__title">7 dniowa</div>
+                                    <!--v-if-->
                                 </div>
-                                <div class="block__body">
-                                    <div class="transition-box-resize forecast-today" grid="3">
-                                        <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Temp</small></div>
-                                            <div>17 / 24</div>
-                                        </div>
-                                        <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Humidity</small></div>
-                                            <div>68%</div>
-                                        </div>
-                                        <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Precipitation</small></div>
-                                            <div>33% chance</div>
-                                        </div>
-                                        <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Sunrise</small></div>
-                                            <div>6:16 am</div>
-                                        </div>
-                                        <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Sunset</small></div>
-                                            <div>5:59 pm</div>
-                                        </div>
-                                        <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Wind</small></div>
-                                            <div>3.6m/s E</div>
-                                        </div>
-                                    </div>
-                                    <div class="margin__top--small text--centre">
-                                        <div class="icon-button icon-button--horizontal" layout="row center-left" data-tooltip="Show more detail" data-tooltip-position="top"><svg class="icon icon--arrow-down-s-line icon-button__icon">
-                                                <use xlink:href="/icons.svg#arrow-down-s-line"></use>
-                                            </svg>
-                                            <!--v-if-->
-                                        </div>
+                                <div class="block__body" id="app">
+                                    <div class="accordion forecast-daily">
+                                        <table class="forecast-daily__days">
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                <tr class="forecast-daily__day-header menu-item">
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
+                                                        <svg class="icon icon--sun-line">
+                                                            <use xlink:href="/icons.svg#sun-line"></use>
+                                                        </svg></td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
+                                                        <div>Thursday, 8 Apr</div>
+                                                        <div class="text--meta text--tight">
+                                                            <small>{{ element.Sky }}</small></div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
+                                                        <div layout="row center-right">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                </tr>
+                                                
+                                                <tr class="forecast-daily__day-body">
+                                                    <td colspan="5">
+                                                        <div class="transition-box-resize accordion-pane"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            
+                                        </table>
                                     </div>
                                 </div>
                             </section>
+                            
                             <section class="block forecast-index__block forecast-index__block--hourly-forecast">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">Godzinowa</div>
@@ -168,7 +439,7 @@
                                 <div class="block__body">
                                     <div class="forecast-hourly">
                                         <div class="forecast-hourly__header" layout="row center-justify">
-                                            <div self="size-x1">Temperature (°C)</div>
+                                            <div self="size-x1">Temperatura (°C)</div><button>zmień na F</button>
                                             <div class="forecast-hourly__options" layout="row center-center">
                                                 <div class="icon-button icon-button--vertical menu-item text--small menu-item--active menu-item text--small menu-item--active" layout="row center-left" data-tooltip="Temperature" data-tooltip-position="top"><svg class="icon icon--temp-cold-line icon-button__icon">
                                                         <use xlink:href="/icons.svg#temp-cold-line"></use>
@@ -597,9 +868,9 @@
                                 
                                 <div class="icon-button__label" self="size-x1"><medium>Pogoda 7 dniowa</medium></div>
                             </div>
-                        </a><a href="details.html" class="router-link-active router-link-exact-active app__route">
+                        </a><a href="longterm.html" class="router-link-active router-link-exact-active app__route">
                             <div class="icon-button icon-button--vertical app__route-button app__route-button" layout="row center-left">
-                                <div class="icon-button__label" self="size-x1"><small>Pogoda szczegółowa</small></div>
+                                <div class="icon-button__label" self="size-x1"><small>Pogoda długoterminowa</small></div>
                             </div>
                         </a><a href="moon.html" class="app__route">
                             <div class="icon-button icon-button--vertical app__route-button app__route-button" layout="row center-left">

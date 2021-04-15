@@ -127,6 +127,47 @@
                     <div class="forecast-index__body" self="size-x1">
                         <div class="container forecast-index__container">
                             
+                            <section class="block forecast-index__block forecast-index__block--today">
+                                <div class="block__header" layout="row center-justify">
+                                    <div class="block__title">Dzisiaj</div>
+
+                                </div>
+                                <div class="block__body">
+                                    <div class="transition-box-resize forecast-today" grid="3">
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Temp</small></div>
+                                            <div>17 / 24</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Humidity</small></div>
+                                            <div>68%</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Precipitation</small></div>
+                                            <div>33% chance</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Sunrise</small></div>
+                                            <div>6:16 am</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Sunset</small></div>
+                                            <div>5:59 pm</div>
+                                        </div>
+                                        <div class="forecast-today__observation">
+                                            <div class="text--meta"><small>Wind</small></div>
+                                            <div>3.6m/s E</div>
+                                        </div>
+                                    </div>
+                                    <div class="margin__top--small text--centre">
+                                        <div class="icon-button icon-button--horizontal" layout="row center-left" data-tooltip="Show more detail" data-tooltip-position="top"><svg class="icon icon--arrow-down-s-line icon-button__icon">
+                                                <use xlink:href="/icons.svg#arrow-down-s-line"></use>
+                                            </svg>
+                                            <!--v-if-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                             
                             <section class="block forecast-index__block forecast-index__block--daily-forecast">
                                 <div class="block__header" layout="row center-justify">
@@ -176,6 +217,7 @@
                                     </div>
                                 </div>
                             </section>
+                            
                             <section class="block forecast-index__block forecast-index__block--hourly-forecast">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">Godzinowa</div>
@@ -615,9 +657,9 @@
                                 
                                 <div class="icon-button__label" self="size-x1"><medium>Pogoda 7 dniowa</medium></div>
                             </div>
-                        </a><a href="details.html" class="app__route">
+                        </a><a href="longterm.html" class="app__route">
                             <div class="icon-button icon-button--vertical app__route-button app__route-button" layout="row center-left">
-                                <div class="icon-button__label" self="size-x1"><small>Pogoda szczegółowa</small></div>
+                                <div class="icon-button__label" self="size-x1"><small>Pogoda długoterminowa</small></div>
                             </div>
                         </a><a href="moon.html" class="app__route">
                             <div class="icon-button icon-button--vertical app__route-button app__route-button" layout="row center-left">
