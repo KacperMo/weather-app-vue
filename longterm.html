@@ -76,6 +76,7 @@
         }
 
     </style>
+    
     <link href="./index_files/app-7d0f37602d49481903a5.css" rel="stylesheet">
     <style type="text/css"></style>
     <link rel="stylesheet" type="text/css" href="./index_files/forecast-58c76ea2846feacb761d.css">
@@ -87,11 +88,15 @@
                 <div class="route forecast-index transition-theme-change theme--weather-clear" layout="column top-stretch">
                     <div class="container forecast-index__header">
                         <div class="weather-actions" layout="row center-justify">
-                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right"><svg class="icon icon--map-pin-line icon-button__icon">
-                                    <use xlink:href="/icons.svg#map-pin-line"></use>
-                                </svg>
+                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right">
+                                
                                 <div class="icon-button__label" self="size-x1">
-                                    <div>Kraków</div>
+                                    <div class="search-container">
+                                        <form>
+                                          <input type="text" placeholder="Kraków" name="search">
+
+                                        </form>
+                                      </div>
                                 </div>
                             </div>
                             <div self="size-x1"></div>
