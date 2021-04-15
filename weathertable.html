@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pogoda</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div class="table-responsive-sm">
+        <table class="table table-bordered">
+            <tr>
+                <th>Miasto</th>
+                <th>Temperatura °C</th>
+                <th>Opady</th>
+                <th>Ciśnienie</th>
+                <th>Jakość powietrza</th>
+                <th>Niebo</th>
+            </tr>
+            <tr v-for="element in weatherstats">
+                <td> {{ element.City }}</td>
+                <td> {{ element.Degree }}</td>
+                <td> {{ element.Rainfall_in_cm }}</td>
+                <td> {{ element.Pressure_hPa }}</td>
+                <td> {{ element.Air_Quality_Index }}</td>
+                <td> {{ element.Sky }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+        new Vue({
+            el: '#app',
+            data () {
+                return {
+                    weatherstats: [],
+                };
+            },
+            mounted: function () {
+                axios
+                .get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
+                .then(response => this.weatherstats = response.data)
+            },
+        });
+    </script>
+</body>
+</html>
