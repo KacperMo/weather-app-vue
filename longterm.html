@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="Description" content="pogodynka uek">
     <script src="./index_files/js" async=""></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -19,6 +21,9 @@
         gtag('config', 'UA-161446294-1');
 
     </script>
+	<link href="./index_files/app-7d0f37602d49481903a5.css" rel="stylesheet">
+    <style type="text/css"></style>
+    <link rel="stylesheet" type="text/css" href="./index_files/forecast-58c76ea2846feacb761d.css">
     <style>
         html,
         body {
@@ -74,12 +79,39 @@
         .pre-app__title {
             font-weight: bold;
         }
+		.dropdown-list {
+			position:absolute;
+			background-color: rgba(238, 238, 238, 0.9);
+			border-bottom-right-radius: 10px;
+			width: 81%;
+			display: none;
+		}
+		.cities {
+		color: black;
+		}
+		.icon-no-hover:hover{
+		background-color: transparent;
+		}
+		.wholeApp {
+			display: none;
+		}
+		.city-list {
+			margin: 10px 15px;
+		}
+		.layout__footer {
+			position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background: var(--background__colour);
+		}
+		.icon-button--horizontal:hover{
+			background: transparent;
+		}
 
     </style>
     
-    <link href="./index_files/app-7d0f37602d49481903a5.css" rel="stylesheet">
-    <style type="text/css"></style>
-    <link rel="stylesheet" type="text/css" href="./index_files/forecast-58c76ea2846feacb761d.css">
+    
 </head>
 <body data-v-app="">
     <div name="layout" class="layout app transition-theme-change phase--day theme--default">
@@ -90,11 +122,17 @@
                         <div class="weather-actions" layout="row center-justify">
                             <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right">
                                 
-                                <div class="icon-button__label" self="size-x1">
+                                <div id="search" class="icon-button__label" self="size-x1">
                                     <div class="search-container">
                                         <form>
-                                          <input type="text" placeholder="Kraków" name="search">
-
+                                           <div id="myDropdown" class="dropdown-content">
+												<input type="text" placeholder="Search.." id="myInput"  onkeyup="filterFunction();showSuggestions();">
+												   <div id="dropdown-list" class="dropdown-list">
+													<div class="city-list" v-for="city in cities">
+														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.City}} </a>
+													</div>
+												</div> 
+											  </div>	
                                         </form>
                                       </div>
                                 </div>
@@ -105,7 +143,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <header class="forecast-index__summary" layout="column center-stretch">
+                        <header class="wholeApp forecast-index__summary" layout="column center-stretch">
                             <div class="forecast-summary">
                                 <div layout="row center-justify">
                                     <div>
@@ -122,7 +160,7 @@
 
 
                     </div>
-                    <div class="forecast-index__body" self="size-x1">
+                    <div class="wholeApp forecast-index__body" self="size-x1">
                         <div class="container forecast-index__container">
                             
                             <section class="block forecast-index__block forecast-index__block--daily-forecast">
@@ -890,7 +928,96 @@
         <!--v-if-->
 
     </div>
+	<script>
+	     new Vue({
+            el: '#app',
+            data () {
+                return {
+                    weatherstats: [],
+                };
+            },
+            mounted: function () {
+                axios
+                .get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
+                .then(response => this.weatherstats = response.data)
+            },				
+        });
+		new Vue({
+				el: '#search',
 
+			data () {
+				return {
+					cities: [],
+				};
+			},
+			mounted: function () {
+				axios
+				.get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
+                .then(response => this.cities = response.data)
+			},
+		});
+	
+	
+  function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+function clickCity(content) {
+console.log(content);
+	var input = document.getElementById("myInput");
+	input.value = content;
+	
+	var list = document.getElementsByClassName("wholeApp");
+	for (var i = 0; i < list.length; i++){
+		list[i].style.display="block";
+	}
+	document.getElementById("dropdown-list").style.display = "none";
+}
+function showSuggestions() {
+	document.getElementById("dropdown-list").style.display = "block";
+}
+function changeCF() {
+	var btn = document.getElementById("buttonChange");
+	var temperature = document.getElementById("Temperature");
+	
+
+	if (btn.value === "C") {
+		btn.value = "F";
+		btn.innerHTML = "Zmień na C";
+		temperature.innerHTML = "Temperature (°F)";
+	}
+	else if (btn.value === "F"){
+		btn.value = "C";
+		btn.innerHTML = "Zmień na F";
+		temperature.innerHTML = "Temperature (°C)";
+	}
+	var list = document.getElementsByClassName("tempToChange");
+	for (var i = 0; i < list.length; i++) {
+    if(btn.value === "F") {
+		var tempC = list[i].textContent;
+		var tempF = Math.round(parseInt(tempC)*1.8 + 32);
+		list[i].innerHTML = tempF;
+	}
+	else if(btn.value === "C"){
+		var currentTemp = list[i].textContent;
+		var tempC = Math.round(parseInt((currentTemp) -32)/1.8);
+		list[i].innerHTML = tempC;
+	}
+	
+}
+}
+	</script>
 </body>
 
 </html>

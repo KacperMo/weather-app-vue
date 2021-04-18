@@ -88,17 +88,28 @@
 			position:absolute;
 			background-color: rgba(238, 238, 238, 0.9);
 			border-bottom-right-radius: 10px;
-			width: 80%;
+			width: 81%;
 			display: none;
 		}
 		.cities {
 		color: black;
-		margin-left:10px;
 		}
 		.icon-no-hover:hover{
 		background-color: transparent;
 		}
-
+		.wholeApp {
+			display: none;
+		}
+		.city-list {
+			margin: 10px 15px;
+		}
+		.layout__footer {
+			position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background: var(--background__colour);
+		}
     </style>
     
 </head>
@@ -119,7 +130,7 @@
 												<input type="text" placeholder="Search.." id="myInput"  onkeyup="filterFunction();showSuggestions();">
 												   <div id="dropdown-list" class="dropdown-list">
 													<div class="city-list" v-for="city in cities">
-														<a onClick="clickCity()" class="cities" href="#"> {{city.City}} </a>
+														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.City}} </a>
 													</div>
 												</div> 
 											  </div>	
@@ -133,7 +144,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <header class="forecast-index__summary" layout="column center-stretch">
+                        <header class="wholeApp forecast-index__summary" layout="column center-stretch">
                             <div class="forecast-summary">
                                 <div layout="row center-justify">
                                     <div>
@@ -150,7 +161,7 @@
 
 
                     </div>
-                    <div class="forecast-index__body" self="size-x1">
+                    <div class="wholeApp forecast-index__body" self="size-x1">
                         <div class="container forecast-index__container">
                             
                             <section class="block forecast-index__block forecast-index__block--today">
@@ -745,8 +756,15 @@
   }
 }
 function clickCity(content) {
+console.log(content);
 	var input = document.getElementById("myInput");
 	input.value = content;
+	
+	var list = document.getElementsByClassName("wholeApp");
+	for (var i = 0; i < list.length; i++){
+		list[i].style.display="block";
+	}
+	document.getElementById("dropdown-list").style.display = "none";
 }
 function showSuggestions() {
 	document.getElementById("dropdown-list").style.display = "block";
