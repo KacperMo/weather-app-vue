@@ -98,7 +98,7 @@
 		background-color: transparent;
 		}
 		.wholeApp {
-			display: none;
+			display: yes;
 		}
 		.city-list {
 			margin: 10px 15px;
@@ -130,7 +130,7 @@
 												<input type="text" placeholder="Search.." id="myInput"  onkeyup="filterFunction();showSuggestions();">
 												   <div id="dropdown-list" class="dropdown-list">
 													<div class="city-list" v-for="city in cities">
-														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.City}} </a>
+														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.city_name}} </a>
 													</div>
 												</div> 
 											  </div>	
@@ -225,20 +225,20 @@
                                                         </svg></td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
-                                                        <div>Thursday, 8 Apr</div>
+                                                        <div>{{ element.day }}</div>
                                                         <div class="text--meta text--tight">
                                                             <small>{{ element.Sky }}</small></div>
                                                     </td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--precip">
                                                         <div layout="row center-right">
-                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
+                                                            <div class="text--meta">{{ element.Rainfall_in_cm }} %</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
                                                                 <use xlink:href="/icons.svg#drop-fill"></use>
                                                             </svg>
                                                         </div>
                                                     </td>
                                                     
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">{{ element.Night_degree }}</td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
                                                 </tr>
@@ -298,7 +298,7 @@
                                                                 <g transform="translate(0, 25.692307692307697)"><text text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);"></text>
                                                                     <circle r="3" fill="#47B1FA"></circle>
                                                                 </g>
-                                                                <g transform="translate(64, 24.461538461538453)"><text class="tempToChange" text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);" ">22</text>
+                                                                <g transform="translate(64, 24.461538461538453)"><text class="tempToChange" text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">22</text>
                                                                     <circle r="3" fill="#47B1FA"></circle>
                                                                 </g>
                                                                 <g transform="translate(128, 18.61538461538461)"><text class="tempToChange" text-anchor="middle" dominant-baseline="middle" dy="-16" style="fill: var(--font__colour); font-size: var(--font__size--small);">23</text>
@@ -679,9 +679,6 @@
                                     </div>
                                 </div>
                             </section>
-
-                          
-
                         </div>
                     </div>
                 </div>
@@ -721,7 +718,7 @@
             },
             mounted: function () {
                 axios
-                .get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
+                .get('https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e46b7050')
                 .then(response => this.weatherstats = response.data)
             },				
         });
@@ -734,7 +731,7 @@
 			},
 			mounted: function () {
 				axios
-				.get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
+				.get('https://api.mockaroo.com/api/7f44b6d0?count=1000&key=e46b7050')
                 .then(response => this.cities = response.data)
 			},
 		});
