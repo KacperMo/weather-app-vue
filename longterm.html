@@ -168,7 +168,7 @@
                                     <div class="block__title">45 dniowa</div>
                                     <!--v-if-->
                                 </div>
-                                <div class="block__body" id="app">
+                                <div class="block__body " id="app">
                                     <div class="accordion forecast-daily">
                                         <table class="forecast-daily__days">
                                             <tbody v-for="element in weatherstats" class="forecast-daily__day">
@@ -179,7 +179,7 @@
                                                         </svg></td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
-                                                        <div>Thursday, 8 Apr</div>
+                                                        <div>{{ element.day }}</div>
                                                         <div class="text--meta text--tight">
                                                             <small>{{ element.Sky }}</small></div>
                                                     </td>
@@ -192,7 +192,7 @@
                                                         </div>
                                                     </td>
                                                     
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">{{ element.Night_degree }}</td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
                                                 </tr>
@@ -204,38 +204,6 @@
                                                 </tr>
                                             </tbody>
                                             
-                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
-                                                <tr class="forecast-daily__day-header menu-item">
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--icon">
-                                                        <svg class="icon icon--sun-line">
-                                                            <use xlink:href="/icons.svg#sun-line"></use>
-                                                        </svg></td>
-                                                    
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--label">
-                                                        <div>Thursday, 8 Apr</div>
-                                                        <div class="text--meta text--tight">
-                                                            <small>{{ element.Sky }}</small></div>
-                                                    </td>
-                                                    
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--precip">
-                                                        <div layout="row center-right">
-                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
-                                                                <use xlink:href="/icons.svg#drop-fill"></use>
-                                                            </svg>
-                                                        </div>
-                                                    </td>
-                                                    
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">15</td>
-                                                    
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
-                                                </tr>
-                                                
-                                                <tr class="forecast-daily__day-body">
-                                                    <td colspan="5">
-                                                        <div class="transition-box-resize accordion-pane"></div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
                                             
                                             
                                             
