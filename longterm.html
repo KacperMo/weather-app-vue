@@ -94,7 +94,7 @@
 		background-color: transparent;
 		}
 		.wholeApp {
-			display: yes;
+			display: none;
 		}
 		.city-list {
 			margin: 10px 15px;
@@ -157,7 +157,7 @@
                                     </div>
                                     <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
                                 </div>
-                                <div id="dlaMiasta" class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                                
                             </div>
                             
                         </header>
@@ -179,7 +179,7 @@
                                             <tbody v-for="element in weatherstats" class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
-                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
+                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+element.Sky+'.png'" alt="sun"></div>
                                                     
                                                     </td>
                                                     
@@ -275,10 +275,12 @@
                 };
             },
             mounted: function () {
-                //https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e505e090
-                //https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e46b7050
+                //https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e505e090 // KM long_term
+                //https://my.api.mockaroo.com/pogodowe_dane_longterm_v3.json?key=beb2a650  //KW longterm
+                //https://my.api.mockaroo.com/pogodowe_dane_longterm_v3.json?key=beb2a650 //proj
+                //https://my.api.mockaroo.com/pogodowe_dane_dzien_longterm_v4.json?key=dddb12c0 //long
                 axios
-                .get('https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e46b7050')
+                .get('https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e505e090')
                 .then(response => this.weatherstats = response.data)
             },				
         });
@@ -292,6 +294,9 @@
 				};
 			},
 			mounted: function () {
+                //https://my.api.mockaroo.com/citys.json?key=beb2a650 // KW citis
+                //https://my.api.mockaroo.com/citys.json?key=dddb12c0 //MZ citis
+                //https://api.mockaroo.com/api/7f44b6d0?count=1000&key=e46b7050 //proj
 				axios
 				.get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
                 .then(response => this.cities = response.data)
@@ -309,11 +314,11 @@
                     };
                 },
                 mounted: function () {
-                    //https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090
-                    //https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050
+                    //https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090 // Km one_day
+                    //https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050 //proj
                     
                     axios 
-                    .get('https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050')
+                    .get('https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090 ')
                     .then(response => this.day = response.data)
                 },
             });
@@ -328,7 +333,9 @@
                 };
             },
              mounted() {
-    fetch("https://my.api.mockaroo.com/rainfall.json?key=7c024fa0")
+                 //https://my.api.mockaroo.com/deszwyk.json?key=f86b8e60//kuba deszcz
+                 //https://my.api.mockaroo.com/rainfall.json?key=7c024fa0 //proj
+    fetch("https://my.api.mockaroo.com/deszwyk.json?key=f86b8e60")
       .then((response) => response.json())
       .then((data) => (this.chartData = data))
       .then(() => this.renderChart());

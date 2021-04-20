@@ -312,6 +312,7 @@
 				};
 			},
 			mounted: function () {
+                //https://my.api.mockaroo.com/fazy_ksiezyca_v4.json?key=dddb12c0 //m fazy
 				axios
 				.get('https://my.api.mockaroo.com/fazyKsiezyca.json?key=1ae58b50')
                 .then(response => this.moonInfos = response.data)

@@ -103,7 +103,7 @@
         }
 
         .wholeApp {
-            display: yes;
+            display: none;
         }
 
         .city-list {
@@ -224,11 +224,12 @@
                                 <div class="block__body" id="app">
                                     <div class="accordion forecast-daily">
                                         <table class="forecast-daily__days">
+                                            
                                             <!-- v-for="element in weatherstats" -->
                                             <tbody v-for="element in weatherstats" class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
-                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
+                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+element.Sky+'.png'" alt="sun" width="10px" style="opacity: 0.21; height=30px !important;"></div>
                                                     </td>
 
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
@@ -240,7 +241,7 @@
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--precip">
                                                         <div layout="row center-right" style="opacity: 0.51; width=150%;">
                                                             <div class="text--meta">{{ element.Chance_for_rain }} %</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51; height=30px;">
-                                                                <img src="forecastIcons/drop.png" style="opacity: 0.21; height=30px;">
+                                                                <img src="forecastIcons/drop.png" style="opacity: 0.21; height=30px !important;">
                                                             </svg>
                                                         </div>
                                                     </td>
@@ -324,9 +325,12 @@
             },
             mounted: function() {
                 //https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e505e090 // KM dane_pogodowe_tydzien
-                //https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e46b7050
+                //https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e46b7050 //proj
+                //https://my.api.mockaroo.com/pogodowe_dane_tydzien_v3.json?key=beb2a650 //kw 7 dni
+                //https://my.api.mockaroo.com/pogodowe_dane_dzien_tydzien_v4.json?key=dddb12c0 //m 7 dni
+                
                 axios
-                    .get('https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e46b7050')
+                    .get('https://my.api.mockaroo.com/pogodowe_dane_tydzien_v3.json?key=beb2a650')
                     .then(response => this.weatherstats = response.data)
             },
         });
@@ -339,8 +343,11 @@
                 };
             },
             mounted: function() {
+                //https://my.api.mockaroo.com/citys.json?key=beb2a650 // KW citis
+                //https://my.api.mockaroo.com/citys.json?key=dddb12c0 //MZ citis
+                //https://api.mockaroo.com/api/7f44b6d0?count=1000&key=e46b7050 //proj
                 axios
-                    .get('https://api.mockaroo.com/api/7f44b6d0?count=1000&key=e46b7050')
+                    .get('https://my.api.mockaroo.com/citys.json?key=dddb12c0')
                     .then(response => this.cities = response.data)
             },
         });
@@ -357,9 +364,11 @@
                 },
                 mounted: function() {
                     //https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090 //KM one_day
-                    //https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050
+                    //https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050 //proj
+                    //https://my.api.mockaroo.com/pogodowe_dane_dzien_v4.json?key=dddb12c0 //M one
+                    //https://my.api.mockaroo.com/pogodowe_dane_dzien_v3.json?key=beb2a650 //KW one day
                     axios
-                        .get('https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050')
+                        .get('https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090')
                         .then(response => this.day = response.data)
                 },
             });
@@ -372,7 +381,9 @@
                 };
             },
              mounted() {
-    fetch("https://my.api.mockaroo.com/wykresik.json?key=7c024fa0")
+                 //https://my.api.mockaroo.com/wykt.json?key=f86b8e60 //kuba
+                 //https://my.api.mockaroo.com/wykresik.json?key=7c024fa0 //proj
+    fetch("https://my.api.mockaroo.com/wykt.json?key=f86b8e60 ")
       .then((response) => response.json())
       .then((data) => (this.chartData = data))
       .then(() => this.renderChart());
