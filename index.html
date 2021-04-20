@@ -218,19 +218,18 @@
 
                             <section class="block forecast-index__block forecast-index__block--daily-forecast">
                                 <div class="block__header" layout="row center-justify">
-                                    <div class="block__title">7 dniowa</div>
+                                    <div class="block__title">7 dniowa</div><button id="buttonChange" onClick="changeCF()" value="C">zmień na F</button>
                                     <!--v-if-->
                                 </div>
                                 <div class="block__body" id="app">
                                     <div class="accordion forecast-daily">
                                         <table class="forecast-daily__days">
                                             <!-- v-for="element in weatherstats" -->
-                                            <tbody class="forecast-daily__day">
+                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
-                                                        <svg class="icon icon--sun-line">
-                                                            <use xlink:href="/icons.svg#sun-line"></use>
-                                                        </svg></td>
+                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
+                                                    </td>
 
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
                                                         <div>{{ element.day }}</div>
@@ -271,7 +270,7 @@
                                 <div class="block__body">
                                     <div class="forecast-hourly">
                                         <div class="forecast-hourly__header" layout="row center-justify">
-                                            <div id="Temperature" self="size-x1">Temperature (°C)</div><button id="buttonChange" onClick="changeCF()" value="C">zmień na F</button>
+                                            <div id="Temperature" self="size-x1">Temperature (°C)</div>
 
                                         </div>
                                         <div class="trends-chart">
@@ -324,6 +323,8 @@
                 };
             },
             mounted: function() {
+                //https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e505e090 // KM dane_pogodowe_tydzien
+                //https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e46b7050
                 axios
                     .get('https://my.api.mockaroo.com/dane_pogodowe_tydzien.json?key=e46b7050')
                     .then(response => this.weatherstats = response.data)
@@ -355,6 +356,8 @@
                     };
                 },
                 mounted: function() {
+                    //https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090 //KM one_day
+                    //https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050
                     axios
                         .get('https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050')
                         .then(response => this.day = response.data)

@@ -179,9 +179,9 @@
                                             <tbody v-for="element in weatherstats" class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
-                                                        <svg class="icon icon--sun-line">
-                                                            <use xlink:href="/icons.svg#sun-line"></use>
-                                                        </svg></td>
+                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
+                                                    
+                                                    </td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
                                                         <div>{{ element.day }}</div>
@@ -275,11 +275,14 @@
                 };
             },
             mounted: function () {
+                //https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e505e090
+                //https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e46b7050
                 axios
                 .get('https://my.api.mockaroo.com/dane_pogodowe_longterm.json?key=e46b7050')
                 .then(response => this.weatherstats = response.data)
             },				
         });
+        
 		new Vue({
 				el: '#search',
 
@@ -306,7 +309,10 @@
                     };
                 },
                 mounted: function () {
-                    axios
+                    //https://my.api.mockaroo.com/dane_pogodowe_dzien.json?key=e505e090
+                    //https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050
+                    
+                    axios 
                     .get('https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050')
                     .then(response => this.day = response.data)
                 },
