@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="Description" content="pogodynka uek">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./index_files/js" async=""></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -19,7 +21,10 @@
         gtag('config', 'UA-161446294-1');
 
     </script>
-    <style>
+	<link href="./index_files/app-7d0f37602d49481903a5.css" rel="stylesheet">
+    <style type="text/css"></style>
+    <link rel="stylesheet" type="text/css" href="./index_files/forecast-58c76ea2846feacb761d.css">
+     <style>
         html,
         body {
             width: 100%;
@@ -74,13 +79,54 @@
         .pre-app__title {
             font-weight: bold;
         }
+		.dropdown-list {
+			position:absolute;
+			background-color: rgba(238, 238, 238, 0.9);
+			border-bottom-right-radius: 10px;
+			width: 81%;
+			display: none;
+		}
+		.wholeApp {
+			display: yes;
+		}
+		.cities {
+		color: black;
+		}
+		.icon-no-hover:hover{
+		background-color: transparent;
+		}
 
+		.city-list {
+			margin: 10px 15px;
+		}
+		.layout__footer {
+			position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background: var(--background__colour);
+		}
+		.icon-button--horizontal:hover{
+			background: transparent;
+		}
+	.phaseTable {
+		margin-bottom: 80px;
+	}
+	
+	.imgMoons {
+		border-bottom: 1px solid #5d9be5;
+	}
+	.thead {
+		border-bottom: 1px solid #5d9be5;
+	}
+	td {
+		text-align: center;
+		font-weight: bold;
+		}
     </style>
-    <link href="./index_files/app-7d0f37602d49481903a5.css" rel="stylesheet">
-    <style type="text/css"></style>
-    <link rel="stylesheet" type="text/css" href="./index_files/forecast-58c76ea2846feacb761d.css">
+
 </head>
-<body data-v-app="">
+<body  data-v-app="">
     <div name="layout" class="layout app transition-theme-change phase--day theme--default">
         <div class="layout__body">
             <div class="weather-layout route forecast-master">
@@ -90,11 +136,17 @@
                             <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right"><svg class="icon icon--map-pin-line icon-button__icon">
                                     <use xlink:href="/icons.svg#map-pin-line"></use>
                                 </svg>
-                                <div class="icon-button__label" self="size-x1">
+                                <div id="search" class="icon-button__label" self="size-x1">
                                     <div class="search-container">
                                         <form>
-                                          <input type="text" placeholder="Kraków" name="search">
-
+                                           <div id="myDropdown" class="dropdown-content">
+												<input type="text" placeholder="Search.." id="myInput"  onkeyup="filterFunction();showSuggestions();">
+												   <div id="dropdown-list" class="dropdown-list">
+													<div class="city-list" v-for="city in cities">
+														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.City}} </a>
+													</div>
+												</div>
+											  </div>
                                         </form>
                                       </div>
                                 </div>
@@ -105,7 +157,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <header class="forecast-index__summary" layout="column center-stretch">
+                        <header class="wholeApp forecast-index__summary" layout="column center-stretch">
                             <div class="forecast-summary">
                                 <div layout="row center-justify">
                                     <div>
@@ -122,22 +174,84 @@
 
 
                     </div>
-                    <div class="forecast-index__body" self="size-x1">
+                    <div class="wholeApp forecast-index__body" self="size-x1">
                         <div class="container forecast-index__container">
-                            
-                            
-                       
+
+
+
                             <section class="block forecast-index__block forecast-index__block--moonphases">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">Fazy księżyca</div>
 
                                 </div>
-                                <div class="block__body">
+                                <div  class="block__body" >
                                     <div class="forecast-hourly">
-                                        <div class="forecast-hourly__header" layout="row center-justify">
-                                            <div self="size-x1">Fazy</div>
+                                        <div class="forecast-hourly__header" >
+                                            <div  class="phases" id="phases" self="size-x1">
+											<button class="btnTable" id="buttonChange" onClick="changeKM()" value="KM">Kilometry -> Mile</button>
+											<table   >
+												<tr class="thead">
+													<th>Data</th>
+													<th>Faza</th>
+													<th id="rangeFrom">Odległość od Ziemii w Km</th>
+													<th>Księżyc</th>
+												</tr>
+												<tr class="imgMoons"  v-for="(element, index) in moonInfos" :class="[`index--${index}`]" >
+													<td> {{ element.data }}</td>
+													<td> {{ element.faza }}</td>
+													<td class="rangeTo"> {{ element.odleglosc}}</td>
+													<td class="imgMoon">{{element.faza}}</td>
+												</tr>
+											</table> 
+											<!--<table   class="phaseTable" >
+												<tr class="thead">
+													<th>Data</th>
+													<th>Faza</th>
+													<th id="rangeFrom">Odległość od Ziemii w Km</th>
+													<th>Księżyc</th>
+												</tr>
+												<tr class="imgMoons">
+													<td> 2020-20-2</td>
+													<td> Nów</td>
+													<td class="rangeTo"> 2312131</td>
+													<td class="imgMoon">Nów</td>
+												</tr>
+												<tr class="imgMoons">
+													<td> 2020-20-2</td>
+													<td> Pełnia</td>
+													<td class="rangeTo"> 2312131</td>
+													<td class="imgMoon">Pełnia</td>
+												</tr>
+												<tr class="imgMoons">
+													<td> 2020-20-2</td>
+													<td> Ostatnia kwarta</td>
+													<td> 2312131</td>
+													<td class="imgMoon">Ostatnia kwarta</td>
+												</tr>
+												<tr class="imgMoons">
+													<td> 2020-20-2</td>
+													<td> Pierwsza kwarta</td>
+													<td> 2312131</td>
+													<td class="imgMoon">Pierwsza kwarta</td>
+												</tr>
+											</table> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+											</div>
+
                                             <div class="forecast-hourly__options" layout="row center-center">
-                                                <div class="icon-button icon-button--vertical menu-item text--small menu-item--active menu-item text--small menu-item--active" layout="row center-left" data-tooltip="Temperature" data-tooltip-position="top"><svg class="icon icon--temp-cold-line icon-button__icon">
+                                                <div   onload="setMoonPhase()" class="icon-button icon-button--vertical menu-item text--small menu-item--active menu-item text--small menu-item--active" layout="row center-left" data-tooltip="Temperature" data-tooltip-position="top"><svg class="icon icon--temp-cold-line icon-button__icon">
                                                         <use xlink:href="/icons.svg#temp-cold-line"></use>
                                                     </svg>
                                                     <!--v-if-->
@@ -171,7 +285,7 @@
                     <div class="container app__nav-container" layout="row center-stretch" grid="3">
                         <a href="index.html" class="app__route" aria-current="page">
                             <div class="icon-button icon-button--vertical app__route-button app__route-button" layout="row center-left">
-                                
+
                                 <div class="icon-button__label" self="size-x1"><small>Pogoda 7 dniowa</small></div>
                             </div>
                         </a><a href="longterm.html" class="app__route">
@@ -191,7 +305,164 @@
         <!--v-if-->
 
     </div>
+    <script>
 
+		new Vue({
+				el: '#search',
+			data () {
+				return {
+					cities: [],
+				};
+			},
+			mounted: function () {
+				axios
+				.get('https://my.api.mockaroo.com/danepogodowe.json?key=1f164bd0')
+                .then(response => this.cities = response.data)
+			},
+
+		});
+	new Vue({
+				el: '#phases',
+			data () {
+				return {
+					moonInfos: [],
+				};
+			},
+			mounted: function () {
+				axios
+				.get('https://my.api.mockaroo.com/fazyKsiezyca.json?key=1ae58b50')
+                .then(response => this.moonInfos = response.data)
+
+			},
+
+		});
+
+
+
+
+  function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+function clickCity(content) {
+console.log(content);
+	var input = document.getElementById("myInput");
+	input.value = content;
+
+	var list = document.getElementsByClassName("wholeApp");
+	for (var i = 0; i < list.length; i++){
+		list[i].style.display="block";
+	}
+	document.getElementById("dropdown-list").style.display = "none";
+}
+function showSuggestions() {
+	document.getElementById("dropdown-list").style.display = "block";
+}
+function changeKM() {
+	var btn = document.getElementById("buttonChange");
+	var range = document.getElementById("rangeFrom");
+
+
+	if (btn.value === "KM") {
+		btn.value = "MI";
+		btn.innerHTML = "Mile -> Kilometry";
+		range.innerHTML = "Odległość od Ziemii w milach";
+	}
+	else if (btn.value === "MI"){
+		btn.value = "KM";
+		btn.innerHTML = "Kilometry -> mile";
+		range.innerHTML = "Odległość od Ziemii w km"
+	}
+	var list = document.getElementsByClassName("rangeTo");
+	for (var i = 0; i < list.length; i++) {
+    if(btn.value === "KM") {
+		var km = list[i].textContent;
+		var mi = Math.round(parseInt(km)*1.6);
+		list[i].innerHTML = mi;
+	}
+	else if(btn.value === "MI"){
+		var mi = list[i].textContent;
+		var km = Math.round(parseInt(mi)/1.6);
+		list[i].innerHTML = km;
+	}
+
+}
+}
+setTimeout(function(){ 
+	var list = document.getElementsByClassName("imgMoon");
+
+	for (var i = 0; i < list.length; i++){
+	var tdContent = list[i].textContent;
+		console.log(tdContent);
+
+		if(tdContent == 'Pełnia')
+		{
+			list[i].innerHTML= '<td><img  class="moonImg" src="./moonphases/Pelnia.png" alt="Nów" /></td>';
+			console.log('asda');
+		}
+		else if(tdContent == "Nów")
+		{
+			list[i].innerHTML= '<td><img  class="moonImg" src="./moonphases/Now.png" alt="Nów" /></td>';
+		}
+		else if(tdContent == "Pierwsza kwarta")
+		{
+			list[i].innerHTML= '<td><img class="moonImg" src="./moonphases/pierwszaKwadra.png" alt="Pierwsza Kwadra" /></td>';
+		}
+		else if(tdContent == "Ostatnia kwarta")
+		{
+			list[i].innerHTML= '<td><img class="moonImg" src="./moonphases/ostatniaKwadra.png" alt="Ostatnia Kwadra" /></td>';
+		}
+		else
+		{
+			console.log('asasdadassad');
+		}
+
+		}
+ }, 500);
+function setMoonPhase(){
+
+	var list = document.getElementsByClassName("imgMoon");
+
+	for (var i = 0; i < list.length; i++){
+	var tdContent = list[i].textContent;
+		console.log(tdContent);
+
+		if(tdContent == 'Pełnia')
+		{
+			list[i].innerHTML= '<td><img src="./moonphases/Pelnia.png" alt="Nów" /></td>';
+			console.log('asda');
+		}
+		else if(tdContent == "Nów")
+		{
+			list[i].innerHTML= '<td><img src="./moonphases/Now.png" alt="Nów" /></td>';
+		}
+		else if(tdContent == "Pierwsza kwarta")
+		{
+			list[i].innerHTML= '<td><img src="./moonphases/pierwszaKwadra.png" alt="Pierwsza Kwadra" /></td>';
+		}
+		else if(tdContent == "Ostatnia kwarta")
+		{
+			list[i].innerHTML= '<td><img src="./moonphases/ostatniaKwadra.png" alt="Ostatnia Kwadra" /></td>';
+		}
+		else
+		{
+			console.log('asasdadassad');
+		}
+
+		}
+}
+    </script>
 </body>
 
 </html>
