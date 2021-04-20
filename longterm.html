@@ -143,18 +143,22 @@
                                 </svg>
                             </div>
                         </div>
-                        <header class="wholeApp forecast-index__summary" layout="column center-stretch">
-                            <div class="forecast-summary">
+                       <header class="wholeApp forecast-index__summary" layout="column center-stretch">
+                            
+                            <div class="forecast-summary oneDay">
                                 <div layout="row center-justify">
                                     <div>
-                                        <div class="forecast-summary__temp"> 22°C / 1°C </div>
-                                        <div class="forecast-summary__temp"><small>deszcz 0%</small></div>
-                                        <div class="forecast-summary__description"><small>Bezchmurnie</small></div>
+                                        <div class="forecast-summary__temp"> {{ day.Degree }} °C / {{ day.Night_degree }}°C </div>
+                                        
+                                        <div class="forecast-summary__temp"><small>deszcz {{ day.Chance_for_rain }}%</small></div>
+                                        
+                                        <div class="forecast-summary__description"><small>{{ day.Sky }}</small></div>
                                     </div>
-                                    <div><img class="forecast-summary__figure" src="forecastIcons/sun.png" alt="sunny"></div>
+                                    <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
                                 </div>
-                                <div class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                                <div id="dlaMiasta"class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
                             </div>
+                            
                         </header>
 
 
@@ -185,9 +189,9 @@
                                                     </td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--precip">
-                                                        <div layout="row center-right">
-                                                            <div class="text--meta">{{ element.Rainfall_in_cm }}</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
-                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                        <div layout="row center-right"  style="opacity: 0.51; width=150%;">
+                                                            <div class="text--meta">{{ element.Chance_for_rain }} %</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51; height=30px;">
+                                                                <img src="forecastIcons/drop.png" style="opacity: 0.21; height=30px;">
                                                             </svg>
                                                         </div>
                                                     </td>
