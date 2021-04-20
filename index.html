@@ -119,9 +119,7 @@
         }
 
     </style>
-
 </head>
-
 <body data-v-app="">
     <div name="layout" class="layout app transition-theme-change phase--day theme--default">
         <div class="layout__body">
@@ -155,15 +153,16 @@
                             <div class="forecast-summary oneDay">
                                 <div layout="row center-justify">
                                     <div>
-                                        <div class="forecast-summary__temp"> {{ day.Degree }} °C / {{ day.Night_degree }}°C </div>
-                                        <div class="forecast-summary__temp"><small>deszcz {{ day.Chance_for_rain }}%</small></div>
+                                        <div class="forecast-summary__temp"> {{ day.Degree }} °C / <small>{{ day.Night_degree }}°C</small> </div>
+                                        <div class="forecast-summary__temp"><small>wilgotność {{ day.Chance_for_rain }}%</small></div>
                                         <div class="forecast-summary__description"><small>{{ day.Sky }}</small></div>
                                     </div>
                                     <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
                                 </div>
-                                <div id="dlaMiasta" class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                                <div id="dlaMiasta" class="forecast-summary__last-updated">
+                                    <small>Dla miasta Kraków</small>
+                                </div>
                             </div>
-
                         </header>
                     </div>
 
@@ -219,46 +218,39 @@
                                 </div>
                                 <div class="block__body" id="app">
                                     <div class="accordion forecast-daily">
-                                        <table class="forecast-daily__days">
-                                            
+                                        <table class="forecast-daily__days">  
                                             <!-- v-for="element in weatherstats" -->
                                             <tbody v-for="element in weatherstats" class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
                                                          <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+element.Sky+'.png'" alt="sun" width="10px" style="opacity: 0.21; height=30px !important;"></div>
                                                     </td>
-
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
                                                         <div>{{ element.day }}</div>
                                                         <div class="text--meta text--tight">
                                                             <small>{{ element.Sky }}</small></div>
                                                     </td>
-
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--precip">
                                                         <div layout="row center-right" style="opacity: 0.51; width=150%;">
-                                                            <div class="text--meta">{{ element.Chance_for_rain }} %</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51; height=30px;">
+                                                            <div class="text--meta">{{ element.Chance_for_rain }} %</div>
+                                                            <svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51; height=30px;">
                                                                 <img src="forecastIcons/drop.png" style="opacity: 0.21; height=30px !important;">
                                                             </svg>
                                                         </div>
                                                     </td>
-
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--min">{{ element.Night_degree }}</td>
-
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
                                                 </tr>
-
                                                 <tr class="forecast-daily__day-body">
                                                     <td colspan="5">
                                                         <div class="transition-box-resize accordion-pane"></div>
                                                     </td>
                                                 </tr>
                                             </tbody>
-
                                         </table>
                                     </div>
                                 </div>
                             </section>
-
                             <section class="block forecast-index__block forecast-index__block--hourly-forecast" style="margin-bottom: 100px;">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">Godzinowa</div>
@@ -303,10 +295,7 @@
                         </a></div>
                 </nav>
             </footer>
-            <!--v-if-->
-            <!--v-if-->
         </div>
-        <!--v-if-->
 
     </div>
     <script>

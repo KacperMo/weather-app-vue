@@ -94,7 +94,7 @@
 		background-color: transparent;
 		}
 		.wholeApp {
-			display: none;
+			display: yes;
 		}
 		.city-list {
 			margin: 10px 15px;
@@ -149,9 +149,9 @@
                             <div class="forecast-summary oneDay">
                                 <div layout="row center-justify">
                                     <div>
-                                        <div class="forecast-summary__temp"> {{ day.Degree }} °C / {{ day.Night_degree }}°C </div>
+                                        <div class="forecast-summary__temp"> {{ day.Degree }} °C / <small>{{ day.Night_degree }}°C</small> </div>
                                         
-                                        <div class="forecast-summary__temp"><small>deszcz {{ day.Chance_for_rain }}%</small></div>
+                                        <div class="forecast-summary__temp"><small>wilgotność {{ day.Chance_for_rain }}%</small></div>
                                         
                                         <div class="forecast-summary__description"><small>{{ day.Sky }}</small></div>
                                     </div>
