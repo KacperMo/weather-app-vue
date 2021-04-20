@@ -134,9 +134,6 @@
                                 </svg>
                                 <div id="search" class="icon-button__label" self="size-x1">
                                     <div class="search-container">
-
-
-
                                         <form>
                                             <div id="myDropdown" class="dropdown-content">
                                                 <input type="text" placeholder="Kraków" id="myInput" onkeyup="filterFunction();showSuggestions();">
@@ -214,8 +211,7 @@
                                     </div>
                                 </div>
                             </section>
-
-
+                            
                             <section class="block forecast-index__block forecast-index__block--daily-forecast">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">7 dniowa</div><button id="buttonChange" onClick="changeCF()" value="C">zmień na F</button>
@@ -282,8 +278,6 @@
                                     </div>
                                 </div>
                             </section>
-
-
                         </div>
                     </div>
                 </div>
@@ -351,7 +345,6 @@
                     .then(response => this.cities = response.data)
             },
         });
-
 
         let elements = document.getElementsByClassName('oneDay');
         for (let i = 0; i < elements.length; i++) {
