@@ -145,55 +145,55 @@
                             </div>
                         </div>
                         <header class="wholeApp forecast-index__summary" layout="column center-stretch">
-                            <div class="forecast-summary">
+                            
+                            <div class="forecast-summary oneDay">
                                 <div layout="row center-justify">
                                     <div>
-                                        <div class="forecast-summary__temp"> 22°C / 1°C </div>
-                                        <div class="forecast-summary__temp"><small>deszcz 0%</small></div>
-                                        <div class="forecast-summary__description"><small>Bezchmurnie</small></div>
+                                        <div class="forecast-summary__temp"> {{ day.Degree }} °C / {{ day.Night_degree }}°C </div>
+                                        <div class="forecast-summary__temp"><small>deszcz {{ day.Chance_for_rain }}%</small></div>
+                                        <div class="forecast-summary__description"><small>{{ day.Sky }}</small></div>
                                     </div>
-                                    <div><img class="forecast-summary__figure" src="forecastIcons/sun.png" alt="sunny"></div>
+                                    <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
                                 </div>
                                 <div class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
                             </div>
-                        </header>
-
-
-
-                    </div>
-                    <div class="wholeApp forecast-index__body" self="size-x1">
-                        <div class="container forecast-index__container">
                             
+                        </header>
+                    </div>
+                    
+                    <div class="wholeApp forecast-index__body" id="oneDay" self="size-x1">
+                        <div class="container forecast-index__container">
+                           
                             <section class="block forecast-index__block forecast-index__block--today">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">Dzisiaj</div>
 
                                 </div>
-                                <div class="block__body">
+                                <div class="block__body oneDay">
                                     <div class="transition-box-resize forecast-today" grid="3">
                                         <div class="forecast-today__observation">
                                             <div class="text--meta"><small>Temp</small></div>
-                                            <div>17 / 24</div>
+                                            <div>{{ day.Night_degree }} °C/ {{ day.Degree }}°C</div>
                                         </div>
                                         <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Humidity</small></div>
-                                            <div>68%</div>
+                                            <div class="text--meta"><small>Wilgotność powietrza</small></div>
+                                            <div>{{ day.Humidity }}%</div>
                                         </div>
                                         <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Precipitation</small></div>
-                                            <div>33% chance</div>
+                                            <div class="text--meta"><small>Szansa opadów</small></div>
+                                            <div>{{ day.Chance_for_rain }}% szans</div>
                                         </div>
                                         <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Sunrise</small></div>
-                                            <div>6:16 am</div>
+                                            <div class="text--meta"><small>Wschód słońca</small></div>
+                                            <div>{{ day.Sunrice }}</div>
                                         </div>
                                         <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Sunset</small></div>
-                                            <div>5:59 pm</div>
+                                            <div class="text--meta"><small>Zachód słońca</small></div>
+                                            <div>{{ day.SunSet }}</div>
                                         </div>
                                         <div class="forecast-today__observation">
-                                            <div class="text--meta"><small>Wind</small></div>
-                                            <div>3.6m/s E</div>
+                                            <div class="text--meta"><small>Wiatr</small></div>
+                                            <div>{{ day.Wind }} Km/h</div>
                                         </div>
                                     </div>
                                     <div class="margin__top--small text--centre">
@@ -206,6 +206,7 @@
                                 </div>
                             </section>
                             
+                            
                             <section class="block forecast-index__block forecast-index__block--daily-forecast">
                                 <div class="block__header" layout="row center-justify">
                                     <div class="block__title">7 dniowa</div>
@@ -214,10 +215,8 @@
                                 <div class="block__body" id="app">
                                     <div class="accordion forecast-daily">
                                         <table class="forecast-daily__days">
-                                            
-                                            
-                                            
-                                            <tbody v-for="element in weatherstats" class="forecast-daily__day">
+                                                    <!-- v-for="element in weatherstats" -->
+                                            <tbody  class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
                                                         <svg class="icon icon--sun-line">
@@ -231,9 +230,9 @@
                                                     </td>
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--precip">
-                                                        <div layout="row center-right">
-                                                            <div class="text--meta">{{ element.Rainfall_in_cm }} %</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51;">
-                                                                <use xlink:href="/icons.svg#drop-fill"></use>
+                                                        <div layout="row center-right"  style="opacity: 0.51; width=150%;">
+                                                            <div class="text--meta">{{ element.Chance_for_rain }} %</div><svg class="icon icon--drop-fill forecast-daily__precip-icon" style="opacity: 0.51; height=30px;">
+                                                                <img src="forecastIcons/drop.png" style="opacity: 0.21; height=30px;">
                                                             </svg>
                                                         </div>
                                                     </td>
@@ -722,6 +721,7 @@
                 .then(response => this.weatherstats = response.data)
             },				
         });
+        
 		new Vue({
 				el: '#search',
 			data () {
@@ -735,9 +735,27 @@
                 .then(response => this.cities = response.data)
 			},
 		});
+        
+        
+        let elements = document.getElementsByClassName('oneDay');
+        for(let i=0;i<elements.length;i++)
+        {
+            new Vue({
+                    el: elements[i],
+                data () {
+                    return {
+                        day: [],
+                    };
+                },
+                mounted: function () {
+                    axios
+                    .get('https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050')
+                    .then(response => this.day = response.data)
+                },
+            });
+	   }
 	
-	
-  function filterFunction() {
+function filterFunction() {
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
@@ -753,7 +771,7 @@
   }
 }
 function clickCity(content) {
-console.log(content);
+    console.log(content);
 	var input = document.getElementById("myInput");
 	input.value = content;
 	
@@ -762,6 +780,7 @@ console.log(content);
 		list[i].style.display="block";
 	}
 	document.getElementById("dropdown-list").style.display = "none";
+    document.getElementsByClassName("forecast-summary__last-updated").innerHTML=content;
 }
 function showSuggestions() {
 	document.getElementById("dropdown-list").style.display = "block";
