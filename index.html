@@ -155,7 +155,7 @@
                                     </div>
                                     <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
                                 </div>
-                                <div class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                                <div id="dlaMiasta"class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
                             </div>
                             
                         </header>
@@ -774,7 +774,8 @@ function clickCity(content) {
     console.log(content);
 	var input = document.getElementById("myInput");
 	input.value = content;
-	
+	var miasto = document.getElementById("dlaMiasta");
+    miasto.innerHTML = "<small>Dla miasta "+ content +"</small>";
 	var list = document.getElementsByClassName("wholeApp");
 	for (var i = 0; i < list.length; i++){
 		list[i].style.display="block";
