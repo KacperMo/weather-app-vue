@@ -156,7 +156,7 @@
                                     </div>
                                     <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+day.Sky+'.png'" alt="sun"></div>
                                 </div>
-                                <div id="dlaMiasta"class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                                <div id="dlaMiasta" class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
                             </div>
                             
                         </header>
@@ -698,6 +698,24 @@
                 .then(response => this.cities = response.data)
 			},
 		});
+        
+        let elements = document.getElementsByClassName('oneDay');
+        for(let i=0;i<elements.length;i++)
+        {
+            new Vue({
+                    el: elements[i],
+                data () {
+                    return {
+                        day: [],
+                    };
+                },
+                mounted: function () {
+                    axios
+                    .get('https://my.api.mockaroo.com/pogodowe_dane_dzien.json?key=e46b7050')
+                    .then(response => this.day = response.data)
+                },
+            });
+	   }
 	
 	
   function filterFunction() {
