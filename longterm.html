@@ -170,7 +170,7 @@
                             
                             <section class="block forecast-index__block forecast-index__block--daily-forecast">
                                 <div class="block__header" layout="row center-justify">
-                                    <div class="block__title">45 dniowa</div>
+                                    <div class="block__title">45 dniowa</div><button id="buttonChange" onClick="changeCF()" value="C">zmień na F</button>
                                     <!--v-if-->
                                 </div>
                                 <div class="block__body " id="app">
@@ -197,9 +197,9 @@
                                                         </div>
                                                     </td>
                                                     
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">{{ element.Night_degree }}</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min tempToChange">{{ element.Night_degree }}</td>
                                                     
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max tempToChange">{{ element.Degree }}</td>
                                                 </tr>
                                                 
                                                 <tr class="forecast-daily__day-body">
@@ -225,7 +225,7 @@
                                 <div class="block__body">
                                     <div class="forecast-hourly">
                                         <div class="forecast-hourly__header" layout="row center-justify">
-                                            <div self="size-x1">Temperatura (°C)</div><button>zmień na F</button>
+                                            <div self="size-x1">Temperatura (°C)</div>
                                             
                                         </div>
                                         <div class="trends-chart">
@@ -405,35 +405,31 @@ function showSuggestions() {
 	document.getElementById("dropdown-list").style.display = "block";
 }
 function changeCF() {
-	var btn = document.getElementById("buttonChange");
-	var temperature = document.getElementById("Temperature");
-	
+            var btn = document.getElementById("buttonChange");
 
-	if (btn.value === "C") {
-		btn.value = "F";
-		btn.innerHTML = "Zmień na C";
-		temperature.innerHTML = "Temperature (°F)";
-	}
-	else if (btn.value === "F"){
-		btn.value = "C";
-		btn.innerHTML = "Zmień na F";
-		temperature.innerHTML = "Temperature (°C)";
-	}
-	var list = document.getElementsByClassName("tempToChange");
-	for (var i = 0; i < list.length; i++) {
-    if(btn.value === "F") {
-		var tempC = list[i].textContent;
-		var tempF = Math.round(parseInt(tempC)*1.8 + 32);
-		list[i].innerHTML = tempF;
-	}
-	else if(btn.value === "C"){
-		var currentTemp = list[i].textContent;
-		var tempC = Math.round(parseInt((currentTemp) -32)/1.8);
-		list[i].innerHTML = tempC;
-	}
-	
-}
-}
+
+            if (btn.value === "C") {
+                btn.value = "F";
+                btn.innerHTML = "Zmień na C";
+            } else if (btn.value === "F") {
+                btn.value = "C";
+                btn.innerHTML = "Zmień na F";
+            }
+            var list = document.getElementsByClassName("tempToChange");
+            for (var i = 0; i < list.length; i++) {
+                if (btn.value === "F") {
+                    var tempC = list[i].textContent;
+                    var tempF = Math.round(parseInt(tempC) * 1.8 + 32);
+                    list[i].innerHTML = tempF;
+                } else if (btn.value === "C") {
+                    var currentTemp = list[i].textContent;
+                    var tempC = Math.round(parseInt((currentTemp) - 32) / 1.8);
+                    list[i].innerHTML = tempC;
+                }
+
+            }
+        }
+        
 	</script>
 </body>
 

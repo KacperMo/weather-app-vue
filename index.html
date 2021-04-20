@@ -224,7 +224,7 @@
                                             <tbody v-for="element in weatherstats" class="forecast-daily__day">
                                                 <tr class="forecast-daily__day-header menu-item">
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--icon">
-                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+element.Sky+'.png'" alt="sun" width="10px" style="opacity: 0.21; height=30px !important;"></div>
+                                                         <div><img class="forecast-summary__figure" v-bind:src="'forecastIcons/'+element.Sky+'.png'" alt="sun" width="10px" style="opacity: 0.81; height=30px !important;"></div>
                                                     </td>
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--label">
                                                         <div>{{ element.day }}</div>
@@ -239,8 +239,8 @@
                                                             </svg>
                                                         </div>
                                                     </td>
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min">{{ element.Night_degree }}</td>
-                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max">{{ element.Degree }}</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--min tempToChange" >{{ element.Night_degree }}</td>
+                                                    <td class="forecast-daily__day-column forecast-daily__day-column--max tempToChange">{{ element.Degree }}</td>
                                                 </tr>
                                                 <tr class="forecast-daily__day-body">
                                                     <td colspan="5">
