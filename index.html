@@ -275,8 +275,8 @@
 
                                         </div>
                                         <div class="trends-chart">
-                                            <div id="chart">
-                                                <canvas id="line-chart" width="800" height="450"></canvas>
+                                            <div id="stopnie">
+                                                <canvas id="line-chart" width="800" height="250"></canvas>
                                             </div>
                                         </div>
                                     </div>
@@ -362,48 +362,49 @@
             });
 
             new Vue({
-                el: '#chart',
-                data() {
-                    return {
-                        chartData: [],
-                        labels: [],
-                    };
-                },
-                mounted() {
-                    fetch("https://my.api.mockaroo.com/rainfall.json?key=7c024fa0")
-                        .then((response) => response.json())
-                        .then((data) => (this.chartData = data))
-                        .then(() => this.renderChart());
-                },
-                methods: {
-                    renderChart() {
-                        console.log(this.chartData);
-                        const ctx = document.getElementById("line-chart");
-                        new Chart(ctx, {
-                            type: "bar",
-                            data: {
-                                labels: this.chartData.map((d) => d.days),
-                                datasets: [{
-                                    label: "Ilość opadów w kwiecieniu(cm)",
-                                    data: this.chartData.map((d) => d.rainf),
-                                    backgroundColor: "#3e95cd",
-                                    borderColor: "#3e95cd",
-                                    borderWidth: 2,
-                                }, ],
-                            },
-                            options: {
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            beginAtZero: true
-                                        }
-                                    }]
-                                }
-                            },
-                        });
-                    },
-                },
-            });
+            el: '#stopnie',
+            data () {
+                return {
+                    chartData: [],
+                };
+            },
+             mounted() {
+    fetch("https://my.api.mockaroo.com/wykresik.json?key=7c024fa0")
+      .then((response) => response.json())
+      .then((data) => (this.chartData = data))
+      .then(() => this.renderChart());
+  },
+  methods: {
+    renderChart() {
+      console.log(this.chartData);
+      const ctx = document.getElementById("line-chart");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: this.chartData.map((d) => d.dates),
+          datasets: [
+            {
+              label: "Temperatura",
+              data: this.chartData.map((d) => d.temps),
+              backgroundColor: "#ff4500",
+              borderColor: "#ff4500",
+              borderWidth: 2,
+            },
+          ],
+        },
+		options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  },
+      });
+    },
+  },
+        });
 
 
         }
