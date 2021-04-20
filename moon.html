@@ -132,43 +132,20 @@
             <div class="weather-layout route forecast-master">
                 <div class="route forecast-index transition-theme-change theme--weather-clear" layout="column top-stretch">
                     <div class="container forecast-index__header">
-                        <div class="weather-actions" layout="row center-justify">
-                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right"><svg class="icon icon--map-pin-line icon-button__icon">
-                                    <use xlink:href="/icons.svg#map-pin-line"></use>
-                                </svg>
-                                <div id="search" class="icon-button__label" self="size-x1">
-                                    <div class="search-container">
-                                        <form>
-                                           <div id="myDropdown" class="dropdown-content">
-												<input type="text" placeholder="Search.." id="myInput"  onkeyup="filterFunction();showSuggestions();">
-												   <div id="dropdown-list" class="dropdown-list">
-													<div class="city-list" v-for="city in cities">
-														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.City}} </a>
-													</div>
-												</div>
-											  </div>
-                                        </form>
-                                      </div>
-                                </div>
-                            </div>
-                            <div self="size-x1"></div>
-                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--update weather-actions__action weather-actions__action--update" layout="row center-left" data-tooltip="Update" data-tooltip-position="left"><svg class="icon icon--refresh-line icon-button__icon">
-                                    <use xlink:href="/icons.svg#refresh-line"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <header class="wholeApp forecast-index__summary" layout="column center-stretch">
-                            <div class="forecast-summary">
+                       
+                       <header class="wholeApp forecast-index__summary" layout="column center-stretch" style="margin-top: 100px;">
+                            
+                            <div class="forecast-summary oneDay">
                                 <div layout="row center-justify">
                                     <div>
-                                        <div class="forecast-summary__temp"> 22°C / 1°C </div>
-                                        <div class="forecast-summary__temp"><small>deszcz 0%</small></div>
-                                        <div class="forecast-summary__description"><small>Bezchmurnie</small></div>
+                                        <div class="forecast-summary__temp"> Fazy ksiżyca  </div>
+                                        
                                     </div>
-                                    <div><img class="forecast-summary__figure" src="forecastIcons/sun.png" alt="sunny"></div>
+                                    <div><img class="forecast-summary__figure" src="forecastIcons/moon.png" alt="moon"></div>
                                 </div>
-                                <div class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
+                                <div id="dlaMiasta"class="forecast-summary__last-updated"><small>Dla miasta Kraków</small></div>
                             </div>
+                            
                         </header>
 
 
@@ -203,7 +180,7 @@
                                                     
                                                     <td class="forecast-daily__day-column forecast-daily__day-column--precip">
                                                         <div layout="row center-right"  style="opacity: 0.91; width=30%;">
-                                                                <img class="forecast-summary__figure" v-bind:src="'moonphases/'+element.faza+'.png'" alt="moon phase" tyle="opacity: 0.21; height:200px;">                                
+                                                                <img class="forecast-summary__figure" v-bind:src="'moonphases/'+element.faza+'.png'" alt="moon phase" tyle="opacity: 0.21; height:150px;">                                
                                                                 
                                                             
                                                         </div>
@@ -390,82 +367,20 @@ function changeKM() {
 	}
 	var list = document.getElementsByClassName("rangeTo");
 	for (var i = 0; i < list.length; i++) {
-    if(btn.value === "KM") {
-		var km = list[i].textContent;
-		var mi = Math.round(parseInt(km)*1.6);
-		list[i].innerHTML = mi;
-	}
-	else if(btn.value === "MI"){
-		var mi = list[i].textContent;
-		var km = Math.round(parseInt(mi)/1.6);
-		list[i].innerHTML = km;
-	}
-
+            if(btn.value === "KM") {
+                var km = list[i].textContent;
+                var mi = Math.round(parseInt(km)*1.6);
+                list[i].innerHTML = mi;
+            }
+            else if(btn.value === "MI"){
+                var mi = list[i].textContent;
+                var km = Math.round(parseInt(mi)/1.6);
+                list[i].innerHTML = km;
+	        }
+        }   
 }
-}
-setTimeout(function(){ 
-	var list = document.getElementsByClassName("imgMoon");
-
-	for (var i = 0; i < list.length; i++){
-	var tdContent = list[i].textContent;
-		console.log(tdContent);
-
-		if(tdContent == 'Pełnia')
-		{
-			list[i].innerHTML= '<td><img  class="moonImg" src="./moonphases/Pelnia.png" alt="Nów" /></td>';
-			console.log('asda');
-		}
-		else if(tdContent == "Nów")
-		{
-			list[i].innerHTML= '<td><img  class="moonImg" src="./moonphases/Now.png" alt="Nów" /></td>';
-		}
-		else if(tdContent == "Pierwsza kwarta")
-		{
-			list[i].innerHTML= '<td><img class="moonImg" src="./moonphases/pierwszaKwadra.png" alt="Pierwsza Kwadra" /></td>';
-		}
-		else if(tdContent == "Ostatnia kwarta")
-		{
-			list[i].innerHTML= '<td><img class="moonImg" src="./moonphases/ostatniaKwadra.png" alt="Ostatnia Kwadra" /></td>';
-		}
-		else
-		{
-			console.log('asasdadassad');
-		}
-
-		}
- }, 500);
-function setMoonPhase(){
-
-	var list = document.getElementsByClassName("imgMoon");
-
-	for (var i = 0; i < list.length; i++){
-	var tdContent = list[i].textContent;
-		console.log(tdContent);
-
-		if(tdContent == 'Pełnia')
-		{
-			list[i].innerHTML= '<td><img src="./moonphases/Pelnia.png" alt="Nów" /></td>';
-			console.log('asda');
-		}
-		else if(tdContent == "Nów")
-		{
-			list[i].innerHTML= '<td><img src="./moonphases/Now.png" alt="Nów" /></td>';
-		}
-		else if(tdContent == "Pierwsza kwarta")
-		{
-			list[i].innerHTML= '<td><img src="./moonphases/pierwszaKwadra.png" alt="Pierwsza Kwadra" /></td>';
-		}
-		else if(tdContent == "Ostatnia kwarta")
-		{
-			list[i].innerHTML= '<td><img src="./moonphases/ostatniaKwadra.png" alt="Ostatnia Kwadra" /></td>';
-		}
-		else
-		{
-			console.log('asasdadassad');
-		}
-
-		}
-}
+        
+        
     </script>
 </body>
 

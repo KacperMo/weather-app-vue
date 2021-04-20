@@ -119,18 +119,21 @@
             <div class="weather-layout route forecast-master">
                 <div class="route forecast-index transition-theme-change theme--weather-clear" layout="column top-stretch">
                     <div class="container forecast-index__header">
-                        <div class="weather-actions" layout="row center-justify">
-                            <div class="icon-no-hover icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Set location" data-tooltip-position="right"><svg class="icon icon--map-pin-line icon-button__icon">
+                       <div class="weather-actions" layout="row center-justify">
+                            <div class="icon-no-hover icon-button icon-button--horizontal weather-actions__action weather-actions__action--location weather-actions__action weather-actions__action--location" layout="row center-left" data-tooltip="Wybierz miasto" data-tooltip-position="right"><svg class="icon icon--map-pin-line icon-button__icon">
                                     <use xlink:href="/icons.svg#map-pin-line"></use>
                                 </svg>
                                 <div id="search" class="icon-button__label" self="size-x1">
                                     <div class="search-container">
-                                        <form>
+                                        
+                                        
+                                        
+                                       <form>
                                            <div id="myDropdown" class="dropdown-content">
-												<input type="text" placeholder="Search.." id="myInput"  onkeyup="filterFunction();showSuggestions();">
+												<input type="text" placeholder="Kraków" id="myInput"  onkeyup="filterFunction();showSuggestions();">
 												   <div id="dropdown-list" class="dropdown-list">
 													<div class="city-list" v-for="city in cities">
-														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City"href="#"> {{city.city_name}} </a>
+														<a onClick="clickCity(this.textContent)" class="cities" :value="city.City" href="#"> {{city.city_name}} </a>
 													</div>
 												</div> 
 											  </div>	
@@ -139,10 +142,7 @@
                                 </div>
                             </div>
                             <div self="size-x1"></div>
-                            <div class="icon-button icon-button--horizontal weather-actions__action weather-actions__action--update weather-actions__action weather-actions__action--update" layout="row center-left" data-tooltip="Update" data-tooltip-position="left"><svg class="icon icon--refresh-line icon-button__icon">
-                                    <use xlink:href="/icons.svg#refresh-line"></use>
-                                </svg>
-                            </div>
+                            
                         </div>
                         <header class="wholeApp forecast-index__summary" layout="column center-stretch">
                             
